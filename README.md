@@ -1,4 +1,4 @@
-# Subject Folder Downloader
+# ETL 강의자료 정리기
 
 Chrome MV3 extension that routes downloads from registered course pages into matching subject folders inside the user's Downloads directory.
 
