@@ -1,0 +1,35 @@
+name: Publish GitHub Release Assets
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Package Chrome extension
+        run: |
+          cd extensions/subject-folder-downloader
+          zip -r ../../subject-folder-downloader-extension.zip .
+
+      - name: Package native host
+        run: |
+          zip -r subject-folder-downloader-native-host.zip native-host
+
+      - name: Publish release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            subject-folder-downloader-extension.zip
+            subject-folder-downloader-native-host.zip
