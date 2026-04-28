@@ -1,22 +1,27 @@
-# Installer
+# 설치 도우미
 
-This directory will hold the Windows installer for the native host.
+이 디렉터리는 Windows용 로컬 앱 설치 파일을 만들기 위한 문서와 스크립트를 담고 있습니다.
 
-## Goal
+## 목표
 
-Make the first-time setup feel as close to one click as possible.
+처음 설치를 최대한 한 번에 끝나게 만드는 것입니다.
 
-## Intended flow
+## 설치 흐름
 
-1. User downloads the installer from GitHub Releases.
-2. User runs the installer.
-3. The installer copies the native host files to a stable local location.
-4. The installer registers the native messaging host in the Windows registry.
-5. The installer opens the Chrome Web Store listing for the extension.
-6. The user installs the extension and starts using the full workflow.
+1. 사용자가 GitHub Releases에서 설치 파일을 다운로드합니다.
+2. 설치 파일을 실행합니다.
+3. 설치 프로그램이 native host 파일을 안정적인 위치에 복사합니다.
+4. 설치 프로그램이 Windows 레지스트리에 native messaging host를 등록합니다.
+5. 설치 프로그램이 Chrome Web Store 페이지를 엽니다.
+6. 사용자는 확장을 추가하고 바로 사용을 시작합니다.
 
-## Files to add next
+## 다음에 추가할 파일
 
-- `installer/subject-folder-downloader.iss` for Inno Setup packaging.
-- A Windows CI workflow that builds the installer artifact.
-- A release note that links the installer and the extension listing.
+- `installer/subject-folder-downloader.iss` Inno Setup 스크립트
+- Windows CI에서 설치 파일을 빌드하는 workflow
+- Chrome Web Store 등록 후 연결할 안내 문구
+
+## 주의사항
+
+- 로컬 앱은 Chrome Web Store에 올라가지 않습니다.
+- 확장과 로컬 앱은 각각 다른 방식으로 설치됩니다.
