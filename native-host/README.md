@@ -21,6 +21,10 @@
 .\native-host\install-native-host.ps1 -ExtensionId "<extension-id>"
 ```
 
+현재 Chrome Web Store 확장 ID:
+
+- `oknnfcnknnalckkpgjnbflmoiofhnffp`
+
 ## 요구 사항
 
 - Windows

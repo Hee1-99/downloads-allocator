@@ -13,7 +13,7 @@
 
 1. 확장 버전을 올립니다.
 2. 변경 사항을 커밋합니다.
-3. `v0.3.19` 같은 태그를 만듭니다.
+3. `v0.3.20` 같은 태그를 만듭니다.
 4. 태그를 GitHub에 push 합니다.
 5. GitHub Actions가 릴리즈 자산을 생성해 해당 릴리즈에 첨부합니다.
 
@@ -22,18 +22,20 @@
 ```powershell
 git add .
 git commit -m "chore: prepare release"
-git tag v0.3.19
+git tag v0.3.20
 git push origin main
-git push origin v0.3.19
+git push origin v0.3.20
 ```
 
-## GitHub Actions 설정
+## Chrome Web Store 연결
 
-Windows 설치 파일을 자동 빌드하려면 GitHub 저장소 Secret에 아래 값을 추가해야 합니다.
+현재 Windows 설치 파일 workflow에는 아래 Chrome Web Store 확장 ID가 이미 반영되어 있습니다.
 
-- `CHROME_EXTENSION_ID`: Chrome Web Store에 등록된 확장의 실제 ID
+- `oknnfcnknnalckkpgjnbflmoiofhnffp`
 
-이 값이 없으면 ZIP 릴리즈는 만들어지지만, `subject-folder-downloader-setup.exe`는 빌드되지 않습니다.
+스토어 페이지:
+
+- [Chrome Web Store - ETL 강의자료 정리기](https://chromewebstore.google.com/detail/oknnfcnknnalckkpgjnbflmoiofhnffp)
 
 ## 배포 흐름
 

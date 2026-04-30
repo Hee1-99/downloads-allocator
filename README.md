@@ -9,6 +9,8 @@ ETL 강의자료 정리기는 강의 페이지에서 다운로드한 파일을 �
 확장을 먼저 설치합니다.  
 설치 후 팝업을 열면, 로컬 앱이 아직 없을 경우 `로컬 앱 설치 필요` 안내가 보입니다.
 
+- [Chrome Web Store - ETL 강의자료 정리기](https://chromewebstore.google.com/detail/oknnfcnknnalckkpgjnbflmoiofhnffp)
+
 ### 2. GitHub Releases에서 로컬 앱 설치
 
 아래 페이지에서 최신 릴리스를 열고 Windows 설치 파일 또는 로컬 앱 압축 파일을 내려받습니다.

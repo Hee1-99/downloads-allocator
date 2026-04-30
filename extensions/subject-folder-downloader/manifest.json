@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ETL 강의자료 정리기",
   "description": "Route course page downloads into matching subject folders inside Downloads.",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "icons": {
     "128": "icon128.png"
   },

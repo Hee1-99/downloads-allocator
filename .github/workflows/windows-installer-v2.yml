@@ -13,7 +13,7 @@ jobs:
   build-installer:
     runs-on: windows-latest
     env:
-      CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+      CHROME_EXTENSION_ID: oknnfcnknnalckkpgjnbflmoiofhnffp
 
     steps:
       - name: Check out repository
@@ -23,13 +23,6 @@ jobs:
         shell: powershell
         run: |
           choco install innosetup -y
-
-      - name: Validate extension id input
-        shell: powershell
-        run: |
-          if ([string]::IsNullOrWhiteSpace($env:CHROME_EXTENSION_ID)) {
-            throw "CHROME_EXTENSION_ID is required to build the installer."
-          }
 
       - name: Read extension version
         id: extension_version

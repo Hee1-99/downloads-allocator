@@ -19,7 +19,7 @@
 ## 빌드 조건
 
 - Inno Setup 6
-- GitHub Secret `CHROME_EXTENSION_ID`
+- Chrome Web Store 확장 ID `oknnfcnknnalckkpgjnbflmoiofhnffp`
 
 ## 비고
 

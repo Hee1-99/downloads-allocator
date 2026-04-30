@@ -4,7 +4,7 @@ This installer setup is intended for GitHub Release builds.
 
 ## Required build input
 
-- `CHROME_EXTENSION_ID`
+- `CHROME_EXTENSION_ID` = `oknnfcnknnalckkpgjnbflmoiofhnffp`
 
 The installer needs the real Chrome Web Store extension ID so it can register the native messaging host for the published extension.
 
@@ -22,4 +22,4 @@ The installer needs the real Chrome Web Store extension ID so it can register th
 
 ## Release note
 
-The Windows installer workflow only succeeds after `CHROME_EXTENSION_ID` is added to the repository secrets.
+The Windows installer workflow already includes the published Chrome extension ID, so release builds can attach the installer without an extra repository secret.
