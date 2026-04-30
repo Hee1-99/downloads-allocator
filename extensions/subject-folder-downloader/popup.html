@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Subject Folder Downloader</title>
+    <title>ETL 강의자료 정리기</title>
     <style>
       :root {
         color-scheme: light;
@@ -64,6 +64,12 @@
         box-shadow: 0 0 0 3px rgba(39, 100, 216, 0.14);
       }
 
+      .target-dir-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+
       button {
         border: 0;
         border-radius: 6px;
@@ -79,6 +85,160 @@
         background: #1f55b8;
       }
 
+      section {
+        display: grid;
+        gap: 8px;
+        border-top: 1px solid #dce2eb;
+        padding-top: 12px;
+      }
+
+      .install-notice {
+        display: grid;
+        gap: 10px;
+        border: 1px solid #d8e2f2;
+        border-radius: 8px;
+        padding: 12px;
+        background: #eef4ff;
+      }
+
+      .install-notice[hidden] {
+        display: none;
+      }
+
+      .install-notice-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #193b73;
+      }
+
+      .install-notice-body {
+        font-size: 12px;
+        color: #445064;
+        line-height: 1.5;
+      }
+
+      .install-notice-link {
+        justify-self: start;
+        border-radius: 6px;
+        padding: 9px 11px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffffff;
+        background: #2764d8;
+        text-decoration: none;
+      }
+
+      .install-notice-link:hover {
+        background: #1f55b8;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      ul {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 6px 8px;
+        align-items: center;
+        border: 1px solid #e0e5ee;
+        border-radius: 6px;
+        padding: 9px;
+        background: #ffffff;
+      }
+
+      .subject-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #172033;
+      }
+
+      .subject-key {
+        grid-column: 1 / -1;
+        overflow-wrap: anywhere;
+        font-size: 11px;
+        color: #6a7585;
+      }
+
+      .target-dir {
+        grid-column: 1 / -1;
+        overflow-wrap: anywhere;
+        font-size: 12px;
+        color: #445064;
+      }
+
+      .version {
+        color: #7b8494;
+        font-size: 11px;
+        text-align: right;
+      }
+
+      .support {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .support a {
+        color: #2764d8;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .support a:hover {
+        text-decoration: underline;
+      }
+
+      .support-stack {
+        display: grid;
+        gap: 4px;
+        justify-items: start;
+      }
+
+      .support-note {
+        color: #526070;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .support-copy {
+        color: #2764d8;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        text-align: left;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .support-copy:hover {
+        text-decoration: underline;
+      }
+
+      .delete-subject {
+        min-width: 44px;
+        padding: 6px 8px;
+        border: 1px solid #d5dce7;
+        color: #b42318;
+        background: #ffffff;
+        font-size: 12px;
+      }
+
+      .delete-subject:hover {
+        border-color: #f0b8b4;
+        background: #fff5f4;
+      }
+
       #status {
         min-height: 20px;
         font-size: 13px;
@@ -92,21 +252,51 @@
   </head>
   <body>
     <main>
-      <h1>과목 다운로드 폴더</h1>
-      <p>과목 페이지 URL을 과목명과 연결하면, 이후 다운로드가 Downloads 안의 과목 폴더로 저장됩니다.</p>
+      <h1>ETL 강의자료 정리기</h1>
 
-      <label for="subjectName">
-        과목명
-        <input id="subjectName" type="text" autocomplete="off" placeholder="예: 자료구조">
-      </label>
+      <section id="nativeHostNotice" class="install-notice" hidden aria-labelledby="nativeHostNoticeTitle">
+        <div id="nativeHostNoticeTitle" class="install-notice-title">로컬 앱 설치 필요</div>
+        <p class="install-notice-body">폴더 선택과 자동 이동 기능을 사용하려면 로컬 앱을 먼저 설치해야 합니다. 설치 후 확장을 다시 열면 전체 기능을 바로 사용할 수 있습니다.</p>
+        <a class="install-notice-link" href="https://github.com/Hee1-99/downloads-allocator/releases" target="_blank" rel="noreferrer">로컬 앱 설치하러 가기</a>
+      </section>
 
-      <label for="subjectUrl">
-        과목 URL
-        <input id="subjectUrl" type="url" autocomplete="off" placeholder="비워두면 현재 탭 URL 사용">
-      </label>
+      <div id="mainContent">
+        <p>앞으로 해당 과목 페이지에서 다운로드한 파일들은 지정한 폴더에 저장됩니다. Downloads 안의 <strong>_강의자료</strong> 폴더는 삭제하지 마세요.</p>
 
-      <button id="saveButton" type="button">저장</button>
-      <p id="status" role="status" aria-live="polite"></p>
+        <label for="subjectName">
+          과목명
+          <input id="subjectName" type="text" autocomplete="off" placeholder="예: 자료구조">
+        </label>
+
+        <label for="subjectUrl">
+          과목 URL
+          <input id="subjectUrl" type="url" autocomplete="off" placeholder="비워두면 현재 탭 URL 사용">
+        </label>
+
+        <label for="targetDir">
+          지정할 폴더
+          <span class="target-dir-control">
+            <input id="targetDir" type="text" autocomplete="off" placeholder="예: D:\SNU\2026-1\마케팅관리">
+            <button id="selectFolderButton" type="button">폴더 선택</button>
+          </span>
+        </label>
+
+        <button id="saveButton" type="button">저장</button>
+        <p id="status" role="status" aria-live="polite"></p>
+
+        <section aria-labelledby="savedSubjectsTitle">
+          <h2 id="savedSubjectsTitle">저장된 과목</h2>
+          <ul id="subjectList"></ul>
+          <p id="emptyState">아직 저장된 과목이 없습니다.</p>
+        </section>
+
+        <div class="support-stack">
+          <p class="support-note">새로운 아이디어 제공 환영: businessonhwa@gmail.com</p>
+          <a id="supportCopyLink" class="support-copy" href="#" data-copy-text="토스뱅크 1000-6901-3070">가난한 대학생 후원하기 - 토스뱅크 1000-6901-3070</a>
+        </div>
+
+        <p class="version">v0.3.9</p>
+      </div>
     </main>
 
     <script src="popup.js"></script>
