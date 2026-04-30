@@ -20,11 +20,17 @@ jobs:
       - name: Package Chrome extension
         run: |
           cd extensions/subject-folder-downloader
-          zip -r ../../subject-folder-downloader-extension.zip .
+          zip ../../subject-folder-downloader-extension.zip \
+            manifest.json \
+            popup.html \
+            popup.js \
+            background.js
 
       - name: Package native host
         run: |
-          zip -r subject-folder-downloader-native-host.zip native-host
+          zip -r subject-folder-downloader-native-host.zip native-host \
+            -x "native-host/__pycache__/*" \
+            -x "native-host/*.pyc"
 
       - name: Publish release assets
         uses: softprops/action-gh-release@v2

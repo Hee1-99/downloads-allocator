@@ -264,6 +264,7 @@ test("promptMoveInTab injects a confirm dialog into the original tab", async () 
     assert.deepEqual(calls[0].target, { tabId: 12 });
     assert.equal(typeof calls[0].func, "function");
     assert.deepEqual(calls[0].args, ["D:\\SNU\\Marketing\\lecture.pdf"]);
+    assert.doesNotMatch(calls[0].func.toString(), /backdrop\.addEventListener/);
   } finally {
     delete global.chrome;
   }

@@ -19,13 +19,18 @@
       body {
         width: 340px;
         margin: 0;
-        padding: 18px;
+        padding: 20px;
         background: #f7f8fb;
       }
 
       main {
         display: grid;
-        gap: 14px;
+        gap: 18px;
+      }
+
+      #mainContent {
+        display: grid;
+        gap: 18px;
       }
 
       h1 {
@@ -38,12 +43,12 @@
         margin: 0;
         color: #526070;
         font-size: 13px;
-        line-height: 1.45;
+        line-height: 1.55;
       }
 
       label {
         display: grid;
-        gap: 7px;
+        gap: 9px;
         font-size: 13px;
         font-weight: 650;
       }
@@ -52,7 +57,7 @@
         width: 100%;
         border: 1px solid #ccd3df;
         border-radius: 6px;
-        padding: 10px 11px;
+        padding: 12px 13px;
         font: inherit;
         color: #172033;
         background: #ffffff;
@@ -65,15 +70,23 @@
       }
 
       .target-dir-control {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 8px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .target-dir-control input {
+        flex: 1 1 auto;
+        min-width: 0;
       }
 
       button {
+        width: 100%;
         border: 0;
         border-radius: 6px;
-        padding: 10px 12px;
+        padding: 12px 14px;
         font: inherit;
         font-weight: 700;
         color: #ffffff;
@@ -85,11 +98,24 @@
         background: #1f55b8;
       }
 
+      .form-actions {
+        display: block;
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      #selectFolderButton {
+        flex: 0 0 104px;
+        width: 104px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
       section {
         display: grid;
-        gap: 8px;
+        gap: 12px;
         border-top: 1px solid #dce2eb;
-        padding-top: 12px;
+        padding-top: 16px;
       }
 
       .install-notice {
@@ -201,7 +227,7 @@
 
       .support-stack {
         display: grid;
-        gap: 4px;
+        gap: 6px;
         justify-items: start;
       }
 
@@ -212,17 +238,30 @@
       }
 
       .support-copy {
-        color: #2764d8;
+        display: block;
+        width: 100%;
+        border: 1px solid #cfe0ff;
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: #edf4ff;
+        color: #1f55b8;
         font-size: 12px;
         font-weight: 700;
         text-decoration: none;
         text-align: left;
         cursor: pointer;
         user-select: none;
+        transition: background 120ms ease, border-color 120ms ease;
       }
 
       .support-copy:hover {
-        text-decoration: underline;
+        border-color: #b8d0fb;
+        background: #e3efff;
+        text-decoration: none;
+      }
+
+      .support-copy-account {
+        font-weight: 800;
       }
 
       .delete-subject {
@@ -240,7 +279,7 @@
       }
 
       #status {
-        min-height: 20px;
+        min-height: 22px;
         font-size: 13px;
         color: #1f7a42;
       }
@@ -275,13 +314,15 @@
 
         <label for="targetDir">
           지정할 폴더
-          <span class="target-dir-control">
+          <div class="target-dir-control">
             <input id="targetDir" type="text" autocomplete="off" placeholder="예: D:\SNU\2026-1\마케팅관리">
             <button id="selectFolderButton" type="button">폴더 선택</button>
-          </span>
+          </div>
         </label>
 
-        <button id="saveButton" type="button">저장</button>
+        <div class="form-actions">
+          <button id="saveButton" type="button">저장</button>
+        </div>
         <p id="status" role="status" aria-live="polite"></p>
 
         <section aria-labelledby="savedSubjectsTitle">
@@ -292,10 +333,10 @@
 
         <div class="support-stack">
           <p class="support-note">새로운 아이디어 제공 환영: businessonhwa@gmail.com</p>
-          <a id="supportCopyLink" class="support-copy" href="#" data-copy-text="토스뱅크 1000-6901-3070">가난한 대학생 후원하기 - 토스뱅크 1000-6901-3070</a>
+          <a id="supportCopyLink" class="support-copy" href="#" data-copy-text="토스뱅크 1000-6901-3070">가난한 대학생 후원하기 - <span class="support-copy-account">토스뱅크 1000-6901-3070</span></a>
         </div>
 
-        <p class="version">v0.3.9</p>
+        <p class="version">v0.3.19</p>
       </div>
     </main>
 

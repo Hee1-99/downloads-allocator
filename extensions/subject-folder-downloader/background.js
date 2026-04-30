@@ -324,12 +324,6 @@
 
           confirmButton.addEventListener("click", () => close(true));
           cancelButton.addEventListener("click", () => close(false));
-          backdrop.addEventListener("click", (event) => {
-            if (event.target === backdrop) {
-              close(false);
-            }
-          });
-
           actions.append(confirmButton, cancelButton);
           panel.append(title, subtitle, body, actions);
           backdrop.append(panel);

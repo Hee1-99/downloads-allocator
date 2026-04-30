@@ -10,6 +10,7 @@ if (Test-Path $zipPath) {
 
 $files = @(
   'manifest.json',
+  'icon128.png',
   'popup.html',
   'popup.js',
   'background.js'
