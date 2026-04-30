@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Subject Folder Downloader",
+  "name": "ETL 강의자료 정리기",
   "description": "Route course page downloads into matching subject folders inside Downloads.",
-  "version": "0.1.0",
-  "permissions": ["activeTab", "downloads", "storage", "tabs"],
+  "version": "0.3.9",
+  "permissions": ["activeTab", "downloads", "nativeMessaging", "storage", "tabs", "scripting"],
   "host_permissions": ["https://*/*"],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Subject Folder Downloader"
+    "default_title": "ETL 강의자료 정리기"
   },
   "background": {
     "service_worker": "background.js"
