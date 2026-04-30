@@ -37,9 +37,10 @@ git push origin v0.3.20
 
 - [Chrome Web Store - ETL 강의자료 정리기](https://chromewebstore.google.com/detail/oknnfcnknnalckkpgjnbflmoiofhnffp)
 
-## 배포 흐름
+## 사용자 설치 흐름
 
 1. 사용자는 Chrome Web Store에서 확장을 먼저 설치합니다.
-2. 확장 팝업에서 로컬 앱 설치 안내를 확인합니다.
-3. GitHub Releases에서 로컬 앱 설치 파일을 받습니다.
-4. 로컬 앱 설치 후 확장으로 돌아와 과목과 폴더를 등록합니다.
+2. 확장 팝업에서 `로컬 앱 설치 파일 다운로드` 버튼을 눌러 설치 파일을 받습니다.
+3. 설치 파일 실행 후 확장으로 돌아와 과목과 폴더를 등록합니다.
+
+GitHub Releases는 설치 파일이 실제로 배포되는 위치이며, 확장 팝업이 최신 `.exe` 다운로드 링크로 연결됩니다.

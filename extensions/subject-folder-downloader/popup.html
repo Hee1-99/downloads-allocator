@@ -33,6 +33,10 @@
         gap: 18px;
       }
 
+      #mainContent[hidden] {
+        display: none;
+      }
+
       h1 {
         margin: 0;
         font-size: 18px;
@@ -296,10 +300,10 @@
       <section id="nativeHostNotice" class="install-notice" hidden aria-labelledby="nativeHostNoticeTitle">
         <div id="nativeHostNoticeTitle" class="install-notice-title">로컬 앱 설치 필요</div>
         <p class="install-notice-body">폴더 선택과 자동 이동 기능을 사용하려면 로컬 앱을 먼저 설치해야 합니다. 설치 후 확장을 다시 열면 전체 기능을 바로 사용할 수 있습니다.</p>
-        <a class="install-notice-link" href="https://github.com/Hee1-99/downloads-allocator/releases" target="_blank" rel="noreferrer">로컬 앱 설치하러 가기</a>
+        <a class="install-notice-link" href="https://github.com/Hee1-99/downloads-allocator/releases/latest/download/subject-folder-downloader-setup.exe" target="_blank" rel="noreferrer">로컬 앱 설치 파일 다운로드</a>
       </section>
 
-      <div id="mainContent">
+      <div id="mainContent" hidden>
         <p>앞으로 해당 과목 페이지에서 다운로드한 파일들은 지정한 폴더에 저장됩니다. Downloads 안의 <strong>_강의자료</strong> 폴더는 삭제하지 마세요.</p>
 
         <label for="subjectName">
@@ -336,7 +340,7 @@
           <a id="supportCopyLink" class="support-copy" href="#" data-copy-text="토스뱅크 1000-6901-3070">가난한 대학생 후원하기 - <span class="support-copy-account">토스뱅크 1000-6901-3070</span></a>
         </div>
 
-        <p class="version">v0.3.20</p>
+        <p class="version">v0.3.22</p>
       </div>
     </main>
 

@@ -174,6 +174,7 @@
   }
 
   async function refreshNativeHostNotice() {
+    setNativeHostNoticeVisible(true);
     const installed = await isNativeHostInstalled();
     setNativeHostNoticeVisible(!installed);
     return installed;

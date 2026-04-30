@@ -33,12 +33,11 @@ test("popup includes support and idea submission links", () => {
   assert.match(html, /data-copy-text="토스뱅크 1000-6901-3070"/);
 });
 
-test("popup includes a native host install notice and releases link", () => {
+test("popup hides the main content by default and includes a direct installer download link", () => {
   const html = readPopupHtml();
 
   assert.match(html, /id="nativeHostNotice"/);
-  assert.match(html, /id="mainContent"/);
-  assert.match(html, /로컬 앱 설치 필요/);
-  assert.match(html, /로컬 앱 설치하러 가기/);
-  assert.match(html, /github\.com\/Hee1-99\/downloads-allocator\/releases/);
+  assert.match(html, /id="mainContent" hidden/);
+  assert.match(html, /class="install-notice-link"/);
+  assert.match(html, /github\.com\/Hee1-99\/downloads-allocator\/releases\/latest\/download\/subject-folder-downloader-setup\.exe/);
 });
