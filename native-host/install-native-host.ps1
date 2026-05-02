@@ -22,7 +22,9 @@ $manifest = [ordered]@{
   allowed_origins = @("chrome-extension://$ExtensionId/")
 }
 
-$manifest | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $manifestPath -Encoding UTF8
+$manifestJson = $manifest | ConvertTo-Json -Depth 5
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($manifestPath, $manifestJson, $utf8NoBom)
 
 $registryPath = "HKCU:\Software\Google\Chrome\NativeMessagingHosts\$hostName"
 New-Item -Path $registryPath -Force | Out-Null

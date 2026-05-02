@@ -3,7 +3,7 @@
 #endif
 
 #ifndef AppVersion
-  #define AppVersion "0.3.21"
+  #define AppVersion "0.3.24"
 #endif
 
 #ifndef AppPublisher
@@ -77,7 +77,7 @@ begin
     '  ]'#13#10 +
     '}'#13#10;
 
-  if not SaveStringToFile(ManifestPath, ManifestJson, False) then
+  if not SaveStringToUTF8File(ManifestPath, ManifestJson, False) then
   begin
     RaiseException('Failed to write native host manifest: ' + ManifestPath);
   end;

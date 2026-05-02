@@ -2,12 +2,12 @@
   "manifest_version": 3,
   "name": "ETL 강의자료 정리기",
   "description": "Route course page downloads into matching subject folders inside Downloads.",
-  "version": "0.3.22",
+  "version": "0.3.24",
   "icons": {
     "128": "icon128.png"
   },
   "permissions": ["activeTab", "downloads", "nativeMessaging", "storage", "tabs", "scripting"],
-  "host_permissions": ["https://*/*"],
+  "host_permissions": ["https://myetl.snu.ac.kr/*"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "ETL 강의자료 정리기",

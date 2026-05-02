@@ -23,14 +23,13 @@ test("popup provides target directory controls", () => {
   assert.match(html, /id="selectFolderButton"/);
 });
 
-test("popup includes support and idea submission links", () => {
+test("popup includes only the idea submission note in the footer", () => {
   const html = readPopupHtml();
 
-  assert.match(html, /가난한 대학생 후원하기/);
   assert.match(html, /새로운 아이디어 제공 환영/);
   assert.match(html, /businessonhwa@gmail\.com/);
-  assert.match(html, /id="supportCopyLink"/);
-  assert.match(html, /data-copy-text="토스뱅크 1000-6901-3070"/);
+  assert.doesNotMatch(html, /토스뱅크 1000-6901-3070/);
+  assert.doesNotMatch(html, /supportCopyLink/);
 });
 
 test("popup hides the main content by default and includes a direct installer download link", () => {

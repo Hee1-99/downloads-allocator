@@ -87,6 +87,8 @@ def open_directory(target_dir):
 
 def handle_message(message):
     action = message.get("action")
+    if action == "ping":
+        return {"ok": True, "message": "pong"}
     if action == "selectDirectory":
         return select_directory()
     if action == "moveFile":

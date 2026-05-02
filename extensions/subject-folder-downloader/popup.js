@@ -257,7 +257,6 @@
     const targetDirInput = document.getElementById("targetDir");
     const selectFolderButton = document.getElementById("selectFolderButton");
     const saveButton = document.getElementById("saveButton");
-    const supportCopyLink = document.getElementById("supportCopyLink");
 
     if (!subjectNameInput || !subjectUrlInput || !targetDirInput || !selectFolderButton || !saveButton) {
       return;
@@ -287,22 +286,6 @@
       }
     });
 
-    if (supportCopyLink) {
-      supportCopyLink.addEventListener("click", async (event) => {
-        event.preventDefault();
-        const copyText = String(supportCopyLink.dataset.copyText || "").trim();
-        if (!copyText) {
-          return;
-        }
-
-        try {
-          await navigator.clipboard.writeText(copyText);
-          setStatus("토스뱅크 계좌가 복사되었습니다.", false);
-        } catch (_error) {
-          setStatus("복사하지 못했습니다. 계좌번호를 직접 확인해 주세요.", true);
-        }
-      });
-    }
   }
 
   if (typeof document !== "undefined") {
