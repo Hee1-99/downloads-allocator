@@ -21,9 +21,9 @@
 ```powershell
 git add .
 git commit -m "chore: prepare release"
-git tag v0.3.25
+git tag v0.3.26
 git push origin main
-git push origin v0.3.25
+git push origin v0.3.26
 ```
 
 ## Chrome Web Store
