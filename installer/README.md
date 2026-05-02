@@ -1,28 +1,21 @@
-# Windows 설치 파일 메모
+# Windows 설치기 개요
 
-이 디렉터리는 로컬 앱 설치 파일을 만들기 위한 Inno Setup 스크립트와 관련 자료를 담고 있습니다.
+이 폴더에는 Windows용 로컬 앱 설치기 관련 파일이 들어 있습니다.
 
-## 목표
+## 현재 배포 방식
 
-사용자가 확장 팝업에서 설치 파일을 다운로드한 뒤 실행하면, 아래 작업이 한 번에 끝나도록 하는 것입니다.
+- `subject-folder-downloader-v2.iss`: 현재 릴리즈용 Inno Setup 스크립트
+- `../build-native-host.ps1`: Python 소스를 단일 exe로 빌드하는 스크립트
 
-- native host 파일 복사
-- Chrome native messaging 등록
-- 확장에서 바로 사용할 수 있는 상태 준비
+배포용 설치기는 먼저 native host 실행 파일을 만들고, 그 다음 Inno Setup으로 설치 파일을 생성합니다.
 
-## 핵심 파일
+## 설치기 역할
 
-- `subject-folder-downloader-v2.iss`: 현재 사용 중인 설치 파일 스크립트
-- `subject-folder-downloader.iss`: 이전 초안
-- `subject-folder-downloader-host.manifest.template.json`: 참고용 초기 템플릿
+- `subject-folder-downloader-host.exe`를 `%LOCALAPPDATA%\Programs\ETL Lecture Materials Organizer\native-host`에 설치
+- Chrome native messaging manifest 작성
+- 현재 사용자 레지스트리에 native host 등록
+- 설치 완료 후 확장 팝업으로 돌아가도록 안내
 
-## 빌드 조건
+## 참고
 
-- Inno Setup 6
-- Chrome Web Store 확장 ID `oknnfcnknnalckkpgjnbflmoiofhnffp`
-
-## 비고
-
-현재 사용자 설치 흐름은 `확장 먼저 설치 -> 확장 팝업에서 설치 파일 다운로드 -> 로컬 앱 설치`입니다.
-
-또한 설치는 관리자 권한 없이 진행할 수 있도록 사용자 폴더(`%LOCALAPPDATA%\Programs`) 기준으로 설정되어 있습니다.
+이제 공개 배포용 로컬 앱은 Python 없이 동작합니다.

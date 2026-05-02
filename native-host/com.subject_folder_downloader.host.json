@@ -1,7 +1,7 @@
 ﻿{
     "name":  "com.subject_folder_downloader.host",
     "description":  "Subject Folder Downloader native host",
-    "path":  "C:\\CP\\downloads-allocator\\native-host\\subject-folder-downloader-host.cmd",
+    "path":  "C:\\CP\\downloads-allocator\\native-host\\dist\\subject-folder-downloader-host.exe",
     "type":  "stdio",
     "allowed_origins":  [
                             "chrome-extension://gdcngifdgmdghhnjhnbpfemkeiijljol/"

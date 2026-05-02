@@ -1,37 +1,32 @@
-# 로컬 앱(native host)
+# ETL 강의자료 정리기 로컬 앱
 
-이 디렉터리에는 Chrome 확장과 통신하는 Windows 로컬 앱이 들어 있습니다.
+이 폴더에는 Chrome 확장과 통신하는 Windows native host가 들어 있습니다.
 
-주요 역할:
+기본 설치 흐름은 다음과 같습니다.
 
-- 폴더 선택 창 열기
-- 다운로드된 파일을 지정한 폴더로 이동
-- 지정한 폴더 열기
+1. Chrome Web Store에서 확장을 설치합니다.
+2. 확장 팝업에서 `로컬 앱 설치 파일 다운로드` 버튼을 눌러 `subject-folder-downloader-setup.exe`를 받습니다.
+3. 설치 파일을 실행하면 로컬 앱이 자동으로 등록됩니다.
 
-## 수동 설치 방법
+## 포함 파일
 
-개발 중이거나 설치 파일 없이 직접 등록하고 싶다면 아래 순서로 진행합니다.
+- `subject-folder-downloader-host.py`: 개발용 원본 소스
+- `dist/subject-folder-downloader-host.exe`: 배포용 단일 실행 파일
+- `install-native-host.ps1`: 수동 등록 스크립트
+- `disable-native-host.ps1`: 테스트용 비활성화 스크립트
+- `enable-native-host.ps1`: 테스트용 재활성화 스크립트
 
-1. `chrome://extensions`를 엽니다.
-2. 개발자 모드를 켭니다.
-3. 확장 ID를 확인합니다.
-4. 저장소 루트에서 아래 명령을 실행합니다.
+## 수동 등록
+
+설치 파일 없이 수동으로 등록하려면 아래처럼 실행합니다.
 
 ```powershell
-.\native-host\install-native-host.ps1 -ExtensionId "<extension-id>"
+.\native-host\install-native-host.ps1 -ExtensionId "oknnfcnknnalckkpgjnbflmoiofhnffp"
 ```
-
-현재 Chrome Web Store 확장 ID:
-
-- `oknnfcnknnalckkpgjnbflmoiofhnffp`
 
 ## 요구 사항
 
 - Windows
-- Python 3 (`py` 명령 사용 가능)
-- Tkinter 포함 기본 Python 배포판
+- Google Chrome
 
-## 테스트용 스크립트
-
-- `disable-native-host.ps1`: native host 등록을 잠시 비활성화
-- `enable-native-host.ps1`: 비활성화한 등록을 다시 복구
+배포용 실행 파일에는 Python이 필요하지 않습니다.

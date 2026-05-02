@@ -19,6 +19,21 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyInstaller
+        shell: powershell
+        run: |
+          py -3 -m pip install --upgrade pip pyinstaller
+
+      - name: Build native host executable
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\build-native-host.ps1
+
       - name: Install Inno Setup
         shell: powershell
         run: |
@@ -45,8 +60,21 @@ jobs:
           name: subject-folder-downloader-setup
           path: installer\Output\subject-folder-downloader-setup.exe
 
+      - name: Package native host executable bundle
+        shell: powershell
+        run: |
+          Compress-Archive -Path `
+            native-host\dist\subject-folder-downloader-host.exe, `
+            native-host\README.md, `
+            native-host\install-native-host.ps1, `
+            native-host\disable-native-host.ps1, `
+            native-host\enable-native-host.ps1 `
+            -DestinationPath subject-folder-downloader-native-host.zip
+
       - name: Attach installer to GitHub release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: installer\Output\subject-folder-downloader-setup.exe
+          files: |
+            installer\Output\subject-folder-downloader-setup.exe
+            subject-folder-downloader-native-host.zip

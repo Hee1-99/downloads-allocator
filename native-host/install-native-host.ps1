@@ -7,11 +7,11 @@ $ErrorActionPreference = "Stop"
 
 $hostName = "com.subject_folder_downloader.host"
 $hostDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$hostPath = Join-Path $hostDir "subject-folder-downloader-host.cmd"
+$hostPath = Join-Path $hostDir "subject-folder-downloader-host.exe"
 $manifestPath = Join-Path $hostDir "$hostName.json"
 
 if (-not (Test-Path -LiteralPath $hostPath)) {
-  throw "Native host command not found: $hostPath"
+  throw "Native host executable not found: $hostPath"
 }
 
 $manifest = [ordered]@{

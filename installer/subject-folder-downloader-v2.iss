@@ -3,7 +3,7 @@
 #endif
 
 #ifndef AppVersion
-  #define AppVersion "0.3.24"
+  #define AppVersion "0.3.25"
 #endif
 
 #ifndef AppPublisher
@@ -34,11 +34,10 @@ ArchitecturesInstallIn64BitMode=x64
 DisableProgramGroupPage=yes
 DisableDirPage=no
 PrivilegesRequired=lowest
-UninstallDisplayIcon={app}\native-host\subject-folder-downloader-host.cmd
+UninstallDisplayIcon={app}\native-host\subject-folder-downloader-host.exe
 
 [Files]
-Source: "..\native-host\subject-folder-downloader-host.py"; DestDir: "{app}\native-host"; Flags: ignoreversion
-Source: "..\native-host\subject-folder-downloader-host.cmd"; DestDir: "{app}\native-host"; Flags: ignoreversion
+Source: "..\native-host\dist\subject-folder-downloader-host.exe"; DestDir: "{app}\native-host"; Flags: ignoreversion
 Source: "..\native-host\README.md"; DestDir: "{app}\native-host"; Flags: ignoreversion
 Source: "..\native-host\install-native-host.ps1"; DestDir: "{app}\native-host"; Flags: ignoreversion
 Source: "..\native-host\disable-native-host.ps1"; DestDir: "{app}\native-host"; Flags: ignoreversion
@@ -65,7 +64,7 @@ var
   ManifestJson: string;
 begin
   ManifestPath := ExpandConstant('{app}\native-host\{#NativeHostManifestName}');
-  HostPath := ExpandConstant('{app}\native-host\subject-folder-downloader-host.cmd');
+  HostPath := ExpandConstant('{app}\native-host\subject-folder-downloader-host.exe');
   ManifestJson :=
     '{'#13#10 +
     '  "name": "{#NativeHostName}",'#13#10 +

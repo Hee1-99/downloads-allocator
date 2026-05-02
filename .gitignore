@@ -1,4 +1,7 @@
 native-host/__pycache__/
+native-host/build/
+native-host/dist/
+native-host/*.spec
 installer/Output/
 subject-folder-downloader-extension.zip
 subject-folder-downloader-native-host.zip
