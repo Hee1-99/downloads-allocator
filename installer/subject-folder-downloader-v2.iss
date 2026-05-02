@@ -15,7 +15,6 @@
 #endif
 
 #define NativeHostName "com.subject_folder_downloader.host"
-#define NativeHostManifestName "com.subject_folder_downloader.host.json"
 
 [Setup]
 AppId={{B7D9D2A1-6E5B-4C2B-AE61-8B0F5DA8A101}}
@@ -44,49 +43,44 @@ Source: "..\native-host\disable-native-host.ps1"; DestDir: "{app}\native-host"; 
 Source: "..\native-host\enable-native-host.ps1"; DestDir: "{app}\native-host"; Flags: ignoreversion
 
 [Registry]
-Root: HKCU; Subkey: "Software\Google\Chrome\NativeMessagingHosts\{#NativeHostName}"; ValueType: string; ValueName: ""; ValueData: "{app}\native-host\{#NativeHostManifestName}"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Google\Chrome\NativeMessagingHosts\{#NativeHostName}"; Flags: uninsdeletekey
 
 [Icons]
 Name: "{autoprograms}\{#AppName} README"; Filename: "{app}\native-host\README.md"
 
 [Code]
-function EscapeJson(const Value: string): string;
-begin
-  Result := Value;
-  StringChangeEx(Result, '\', '\\', True);
-  StringChangeEx(Result, '"', '\"', True);
-end;
-
-procedure WriteNativeHostManifest();
+function InstallNativeHost(): Boolean;
 var
-  ManifestPath: string;
-  HostPath: string;
-  ManifestJson: string;
+  ResultCode: Integer;
+  PowerShellPath: string;
+  ScriptPath: string;
+  Parameters: string;
 begin
-  ManifestPath := ExpandConstant('{app}\native-host\{#NativeHostManifestName}');
-  HostPath := ExpandConstant('{app}\native-host\subject-folder-downloader-host.exe');
-  ManifestJson :=
-    '{'#13#10 +
-    '  "name": "{#NativeHostName}",'#13#10 +
-    '  "description": "ETL Lecture Materials Organizer native messaging host",'#13#10 +
-    '  "path": "' + EscapeJson(HostPath) + '",'#13#10 +
-    '  "type": "stdio",'#13#10 +
-    '  "allowed_origins": ['#13#10 +
-    '    "chrome-extension://{#ChromeExtensionId}/"'#13#10 +
-    '  ]'#13#10 +
-    '}'#13#10;
+  PowerShellPath := ExpandConstant('{sys}\WindowsPowerShell\v1.0\powershell.exe');
+  ScriptPath := ExpandConstant('{app}\native-host\install-native-host.ps1');
+  Parameters :=
+    '-ExecutionPolicy Bypass -File "' + ScriptPath + '" ' +
+    '-ExtensionId "{#ChromeExtensionId}"';
 
-  if not SaveStringToUTF8File(ManifestPath, ManifestJson, False) then
-  begin
-    RaiseException('Failed to write native host manifest: ' + ManifestPath);
-  end;
+  Result := Exec(
+    PowerShellPath,
+    Parameters,
+    '',
+    SW_HIDE,
+    ewWaitUntilTerminated,
+    ResultCode
+  ) and (ResultCode = 0);
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then
   begin
-    WriteNativeHostManifest();
+    if not InstallNativeHost() then
+    begin
+      RaiseException('Failed to register the native host for Chrome.');
+    end;
+
     MsgBox(
       'The local app installation is complete.' + #13#10#13#10 +
       'Now return to the Chrome extension popup and continue setup there.',
